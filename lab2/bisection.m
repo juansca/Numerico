@@ -1,19 +1,28 @@
 function [hx, hf] = bisection(fun, I, e, m)
+    # Simplemente renombramos los parámetros para mejor manipulación y
+    # entendimiento
     a = I(1);
     b = I(2);
     niter = m;
 
     fa = fun(a);
     fb = fun(b);
+    # Longitud del intervalo inicial
     len = b - a;
-
+    # Haremos a lo sumo niter (m) iteraciones
     for k = 1:niter
+        # En cada iteración, la longitud disminuye a la mitad
         len = len / 2;
+
+        # 'a + len' representa el punto medio
+        # Guardamos en ambos historiales los valores
         hx(k) = a + len;
         hf(k) = fun(hx(k));
+        # Si el valor es suficienmente cercano a la raíz, paramos
         if abs(hf(k)) < e
             break;
         endif
+        # Si f(a) * f(c) > 0 entonces nos movemos al "subintervalo derecho"
         if sign(fa) == sign(hf(k))
             fa = hf(k);
             a = hx(k);
