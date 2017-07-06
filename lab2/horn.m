@@ -1,3 +1,4 @@
+# Método de Horner para representar polinomios
 function p = horn(coefs, x)
     p = 0;
     for a = coefs

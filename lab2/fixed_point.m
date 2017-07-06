@@ -1,3 +1,4 @@
+# Encuentra el punto fijo de una función
 function hx = ripf(fun, x0, e, m)
     x = x0;
     for k = 1:m
